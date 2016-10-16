@@ -1,0 +1,28 @@
+prismstone_news:
+  target: prismstone_news
+  account: prismstone_news
+  base_url: 'http://www.takaratomy-arts.co.jp/specials/prettyrhythm/pshj/'
+  top_url: 'infomation.php'
+  tweet_template: 'プリズムストーンの「新着情報」が更新されました！({date})\n\n{header}\n"{body}"\n{url}'
+  debug_account: sakuramochi_pre
+prismstone_newitem:
+  target: prismstone_newitem
+  account: prismstone_news
+  base_url: 'http://www.takaratomy-arts.co.jp/specials/prettyrhythm/pshj/'
+  top_url: 'newitem.html'
+  tweet_template: 'プリズムストーンの「ニューアイテム」が更新されました！\n\n{header}\n{url}'
+  debug_account: sakuramochi_pre
+prismstone_blog:
+  target: prismstone_blog
+  account: prismstone_news
+  base_url: 'http://www.takaratomy-arts.co.jp/specials/prettyrhythm/pshj/'
+  top_url: 'blog.php'
+  tweet_template: 'プリズムストーンの「ブログ」が更新されました！({date})\n\n{header}\n"{body}"\n{url}'
+  debug_account: sakuramochi_pre
+prismstone_shoplist:
+  target: prismstone_shoplist
+  account: prismstone_news
+  base_url: 'http://www.takaratomy-arts.co.jp/specials/prettyrhythm/pshj/'
+  top_url: 'index_shoplist.html'
+  tweet_template: 'プリズムストーンの「ショップリスト」が更新されました！({date})\n\n{header}\n{url}'
+  debug_account: sakuramochi_pre
