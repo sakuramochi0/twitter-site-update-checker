@@ -88,7 +88,7 @@ def parse_entry(entry):
             date = parse(date_text)
             header = '{d.year}年{d.month}月に発表されたニューアイテム'.format(d=date)
         elif len(date_text) == 6:
-            date = datetime.date.today()
+            date = datetime.datetime.today()
             header = '{date}に発表されたニューアイテム'.format(date=format_date(date))
 
         body = ''
