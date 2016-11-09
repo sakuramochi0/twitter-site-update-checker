@@ -86,10 +86,11 @@ def parse_entry(entry):
         if len(date_text) == 4:
             date_text = '20{}/{}/01'.format(date_text[:2], date_text[2:4])
             date = parse(date_text)
-            header = '{d.year}年{d.month}月に発表されたニューアイテム'.format(d=date)
+            header = '{d.year}年{d.month}月に追加されたニューアイテム'.format(d=date)
         elif len(date_text) == 6:
-            date = datetime.datetime.today()
-            header = '{date}に発表されたニューアイテム'.format(date=format_date(date))
+            date_text = '20{}/{}/{}'.format(date_text[:2], date_text[2:4],date_text[4:6])
+            date = parse(date_text)
+            header = '{date}に追加されたニューアイテム'.format(date=format_date(date))
 
         body = ''
         doc = dict(
