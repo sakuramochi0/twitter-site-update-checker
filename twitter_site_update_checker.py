@@ -75,24 +75,14 @@ def parse_page(soup):
     return entries
 
 def parse_entry(entry):
-    """Parse entry for prismstone. (not abstructed)"""
+    """Parse entry for prismstone. TODO: abstruct for general shop"""
     # ニューアイテムの場合
     if config['target'] == 'prismstone_newitem':
         imgs = [os.path.join(config['base_url'], img['src'])
                 for img in entry.find_all('img')]
 
-        # Construct id from the date in the image url
-        date_text = re.search(r'/(\d{4,6})[_.].+$', imgs[0]).group(1)
-        _id = date_text
-        if len(date_text) == 4:
-            date_text = '20{}/{}/01'.format(date_text[:2], date_text[2:4])
-            date = parse(date_text)
-            header = '{d.year}年{d.month}月に追加されたニューアイテム'.format(d=date)
-        elif len(date_text) == 6:
-            date_text = '20{}/{}/{}'.format(date_text[:2], date_text[2:4],date_text[4:6])
-            date = parse(date_text)
-            header = '{date}に追加されたニューアイテム'.format(date=format_date(date))
-
+        today = datetime.datetime.today()
+        header = '{date}に追加されたニューアイテム'.format(date=format_date(today))
         body = ''
         doc = dict(
             _id = _id,
