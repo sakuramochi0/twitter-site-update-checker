@@ -9,7 +9,7 @@ import yaml
 from urllib.parse import quote_plus
 
 from dateutil.parser import parse
-from pymongo.mongo_client import MongoClient
+from get_mongo_client import get_mongo_client
 import tweepy
 from bs4 import BeautifulSoup
 import requests
@@ -56,7 +56,7 @@ def save_page(url):
 
 def insert_docs(docs):
     ids = []
-    c = MongoClient()[config['target']].entries
+    c = get_mongo_client()[config['target']].entries
     for doc in docs:
         if c.find({'_id': doc['_id']}).count():
             continue
@@ -156,7 +156,7 @@ def format_date(date):
     return date.strftime('%Y年%m月%d日({wday})'.format(wday=WEEKDAY[date.weekday()]))
 
 def tweet_new_docs():
-    c = MongoClient()[config['target']].entries
+    c = get_mongo_client()[config['target']].entries
     docs = c.find({'meta.tweeted': False}).sort('_id')
     for doc in docs:
         success_id = tweet_doc(doc)
