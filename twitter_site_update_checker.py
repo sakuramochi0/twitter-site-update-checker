@@ -76,6 +76,7 @@ def parse_page(soup):
 
 def parse_entry(entry):
     """Parse entry for prismstone. (not abstructed)"""
+    # ニューアイテムの場合
     if config['target'] == 'prismstone_newitem':
         imgs = [os.path.join(config['base_url'], img['src'])
                 for img in entry.find_all('img')]
@@ -101,6 +102,7 @@ def parse_entry(entry):
             body = body,
             imgs = imgs,
         )
+    # ショップリストの場合
     elif config['target'] == 'prismstone_shoplist':
         name = entry.text.strip()
 
@@ -133,10 +135,11 @@ def parse_entry(entry):
             body = body,
             imgs = imgs,
         )
+    # その他の場合
     else:
         _id = entry['id']
         body = entry.find(class_='info_entry_inbox')
-        date = parse('20' + re.search(r'\d{6}', _id).group(0))
+        date = re.search(r'\d{4}/\d{2}/\d{2}', entry.h2.text).group(0)
         header = entry.find('strong').text.replace('\r', '')
         body_text = body.text.replace('\r', '').strip()
         imgs = [os.path.join(config['base_url'], img['src'])
