@@ -132,6 +132,7 @@ def parse_entry(entry):
         _id = entry['id']
         body = entry.find(class_='info_entry_inbox')
         date = re.search(r'\d{4}/\d{1,2}/\d{1,2}', entry.h2.text).group(0)
+        date = parse(date)
         header = entry.find('strong').text.replace('\r', '')
         body_text = body.text.replace('\r', '').strip()
         imgs = [os.path.join(config['base_url'], img['src'])
