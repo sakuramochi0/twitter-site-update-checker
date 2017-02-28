@@ -81,7 +81,7 @@ def parse_entry(entry):
         imgs = [os.path.join(config['base_url'], img['src'])
                 for img in entry.find_all('img')]
 
-        _id = re.search(r'\d+', entry['class'][0]).group(0)
+        _id = re.search(r'\d+', imgs[0]).group(0)
         today = datetime.date.today()
         date = parse(today.ctime())
         header = '{date}に追加されたニューアイテム'.format(date=format_date(today))
@@ -112,7 +112,7 @@ def parse_entry(entry):
         _id = name
         map_base_url = 'https://www.google.com/maps/search/'
         map_url = os.path.join(map_base_url, quote_plus(address.split()[0]))
-        header = '新しく「{name}」が追加されました。\nGoogle Maps: {map_url}'.format(
+        header = '「{name}」が追加されました。\n地図：{map_url}'.format(
             name = name,
             address = address,
             map_url = map_url,
