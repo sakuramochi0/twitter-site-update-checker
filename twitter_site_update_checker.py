@@ -81,7 +81,7 @@ def parse_entry(entry):
         imgs = [os.path.join(config['base_url'], img['src'])
                 for img in entry.find_all('img')]
 
-        _id = re.search(r'\d+', imgs[0]).group(0)
+        _id = os.path.splitext(os.path.basename(imgs[0]))[0]
         today = datetime.date.today()
         date = parse(today.ctime())
         header = '{date}に追加されたニューアイテム'.format(date=format_date(today))
