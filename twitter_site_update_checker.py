@@ -149,7 +149,8 @@ def parse_entry(entry):
 
 def format_date(date):
     WEEKDAY = '月火水木金土日'
-    return date.strftime('%Y年%m月%d日({wday})'.format(wday=WEEKDAY[date.weekday()]))
+    return '{d.year}年{d.month}月{d.day}日({wday})'.format(
+        d=date, wday=WEEKDAY[date.weekday()])
 
 def tweet_new_docs():
     c = get_mongo_client()[config['target']].entries
