@@ -212,8 +212,10 @@ def download_image(img):
         f.write(r.content)
     return filename
     
-def get_soup(url):
-    return BeautifulSoup(requests.get(url).text, 'lxml')
+def get_soup(url, encoding='utf-8'):
+    r = requests.get(url)
+    r.encoding = encoding
+    return BeautifulSoup(r.text, 'lxml')
 
 if __name__ == '__main__':
     # Parse command line args
